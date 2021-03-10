@@ -8,12 +8,11 @@ from flask import Flask,request,Response,render_template
 
 
 app=Flask(__name__)
-app.config['JSON_AS_ASCII']=false
 
 
 @app.route("/",methods=['GET','POST'])
 def hello():
-    return render_template('input.html')
+    return render_template('test.html')
 
 @app.route("/post",methods=['POST'])
 def home():
@@ -35,7 +34,7 @@ def home():
     output_size = 200 # 출력하고자 하는 토큰 갯수
     while 1:
     # for i in range(5):
-      sent = request.form['input']  # '요즘 기분이 우울한 느낌이에요'
+      sent = request.form['msg']  # '요즘 기분이 우울한 느낌이에요'
       if sent.encode().isalpha():
         print("한국말로 해주세용^^")
         print(100 * '-')
@@ -48,11 +47,8 @@ def home():
 
       str= tokenizer.decode(sample_output[0].tolist()[len(tokenized_indexs)+1:],skip_special_tokens=True)
       answer="Answer: " +str.split('.')[0]
-      print(answer)
       return answer
-      print(100 * '-')
 
-    return "Hello World!"
 
 if __name__ == '__main__':
     app.run(host='223.194.46.208', port=5000)
