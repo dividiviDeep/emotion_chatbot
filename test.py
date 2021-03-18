@@ -6,6 +6,8 @@ from dialogLM.model.kogpt2 import DialogKoGPT2
 from kogpt2_transformers import get_kogpt2_tokenizer
 from flask import Flask,request,Response,render_template
 
+arr=[]
+
 
 app=Flask(__name__)
 
@@ -14,7 +16,8 @@ app=Flask(__name__)
 def hello():
     return render_template('test.html')
 
-@app.route("/post",methods=['POST'])
+
+@app.route("/post",methods=['POST','GET'])
 def home():
     root_path='..'
     data_path = f"{root_path}/data/wellness_dialog_for_autoregressive_train.txt"
@@ -46,8 +49,11 @@ def home():
       sample_output = model.generate(input_ids=input_ids)
 
       str= tokenizer.decode(sample_output[0].tolist()[len(tokenized_indexs)+1:],skip_special_tokens=True)
-      answer="Answer: " +str.split('.')[0]
-      return answer
+      answer=str.split('.')[0]
+      arr.append(sent)
+      arr.append(answer)
+    
+      return render_template('test.html',msg=arr)
 
 
 if __name__ == '__main__':

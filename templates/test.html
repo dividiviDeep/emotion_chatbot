@@ -22,47 +22,40 @@
 			</div>
 		</header>
 		<ul id="chat">
-			<!-- <li class="you">
-				<div class="entete">
-					<span class="status green"></span>
-					<h2>Vincent</h2>
-					<h3>10:12AM, Today</h3>
-				</div>
-				<div class="triangle"></div>
-				<div class="message">
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-				</div>
-			</li>-->
+                        {%for value in msg%}
+			{%if loop.index%2==1%}
+			<li class="me">
+                        <div class="entete">
+                        <h2>Me</h2>
+                        <span class="status blue"></span></div>
+                        <div class="triangle"></div>
+                        <div class="message">{{value}}<div></li>
+			{%endif%}
 
-			<div id="print"></div>
+			{%if loop.index%2==0%}
+                        <li class="you">
+                        <div class="entete">
+                        <h2>Chatbot</h2>
+                        <span class="status blue"></span></div>
+                        <div class="triangle"></div>
+			<div class="message">{{value}}<div></li>
+			{%endif%}
+
+                        {%endfor%}
+  
 		</ul>
 
 		<footer>
+		   <form action="/post" method="post">
+
 			<input type="text" id="msg" name="msg" placeholder="Type your message">
-			<!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt=""> -->
-			<input type="submit" value="제출" id="submit_btn" onclick="printName()" />
+			<input type="submit" value="제출" id="submit_btn" onclick="myfunction()" />
+		</form>
 		</footer>
 	</main>
-
-	<script type="text/javascript">
-	 var temp;
-		function printName() {	
-			var html='';	
-			var arr=new Array();	
-			var name = document.getElementById("msg").value;
-			arr.push(name);	
-			for(var i=0; i<arr.length; i++)
-			{
-				html+='<li class="me">'+
-				'<div class="entete">'+
-					'<h2>Me</h2>'+
-					'<span class="status blue"></span></div>'+
-				'<div class="triangle"></div>'+
-				'<div class="message">'+arr[i]+'<div></li>';
-			}
-			
-			$("#print").append(html);
-		}
-		</script>
+   <script>
+	 function  myfunction()
+{ document.getElementById(msg).reset();
+}
+   </script>
 </div>
