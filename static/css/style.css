@@ -72,6 +72,8 @@ aside li img{
 	border-radius:50%;
 	margin-left:20px;
 	margin-right:8px;
+	height:50px;
+	width:50px;
 }
 aside li div{
 	display:inline-block;
@@ -121,7 +123,7 @@ main header img:first-child{
 	border-radius:50%;
 }
 main header img:last-child{
-	width:24px;
+	width:10px;
 	margin-top:8px;
 }
 main header div{
